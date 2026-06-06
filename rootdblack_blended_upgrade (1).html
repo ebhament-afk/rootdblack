@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rootd Black | Discover. Save. Grow Together.</title>
+<meta name="description" content="Rootd helps consumers and businesses connect through discovery, group deals, and intentional commerce." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================
+   ROOTD BLACK — BLENDED PLATFORM BUILD
+   Keeps the fun. Removes merch/card confusion.
+   Focus: discovery + group deals + businesses + newsletter + waitlist.
+   ========================= */
+
+/* WP/Kadence reset — safe if pasted into WordPress custom HTML */
+header.site-header,
+.kadence-header-wrap,
+.site-header-wrap,
+#masthead,
+.site-branding,
+.wp-block-post-title,
+.entry-header,
+.page-title,
+.woocommerce-breadcrumb,
+.kadence-breadcrumbs,
+.breadcrumbs,
+#secondary,
+aside,
+.widget-area { display:none !important; }
+
+html, body,
+#page, .site, .site-content,
+.content-area, .entry-content,
+.wp-site-blocks, .site-container, .site-main,
+.kadence-content, .content-wrap,
+#primary, #main {
+  background:#050505 !important;
+  margin:0 !important;
+  padding:0 !important;
+  max-width:100% !important;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+:root{
+  --black:#050505;
+  --espresso:#0b0806;
+  --mocha:#120c08;
+  --bark:#1b130d;
+  --panel:#120f0b;
+  --gold:#c9a24a;
+  --gold-2:#e6bd62;
+  --cream:#f4ead6;
+  --warm:#fff8ec;
+  --muted:rgba(244,234,214,.72);
+  --muted-2:rgba(244,234,214,.52);
+  --line:rgba(201,162,74,.18);
+  --line-strong:rgba(201,162,74,.38);
+  --rust:#a85a2a;
+}
+
+body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+.rootd-wrap{
+  min-height:100vh;
+  color:var(--cream);
+  background:
+    radial-gradient(900px 600px at 78% 12%, rgba(201,162,74,.15), transparent 58%),
+    radial-gradient(900px 650px at 16% 28%, rgba(168,90,42,.28), transparent 58%),
+    radial-gradient(700px 460px at 70% 70%, rgba(201,162,74,.08), transparent 65%),
+    linear-gradient(180deg,#060504 0%,#0b0806 40%,#050505 100%);
+  overflow:hidden;
+}
+
+/* Topbar */
+.rootd-topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:16px 56px;
+  background:rgba(5,5,5,.58);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--gold);}
+.brand-icon{width:26px;height:26px;border-radius:8px;display:block;box-shadow:0 0 0 1px rgba(201,162,74,.24);}
+.brand-word{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);}
+.pillnav{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+.pillnav a,.pillnav button{
+  appearance:none;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.18);
+  color:rgba(255,255,255,.76);text-decoration:none;border-radius:999px;padding:10px 15px;
+  font:700 12px/1 'DM Sans',sans-serif;letter-spacing:.02em;cursor:pointer;white-space:nowrap;
+  transition:.2s ease;
+}
+.pillnav a:hover,.pillnav button:hover{color:#fff;border-color:var(--line-strong);transform:translateY(-1px);}
+.pillnav .nav-cta{background:var(--gold);color:#0b0b0b;border-color:rgba(201,162,74,.65);}
+
+.navtoggle{display:none;width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.18);align-items:center;justify-content:center;cursor:pointer;}
+.navtoggle-bars,.navtoggle-bars:before,.navtoggle-bars:after{display:block;width:18px;height:2px;background:rgba(255,255,255,.86);border-radius:99px;position:relative;content:"";}
+.navtoggle-bars:before{position:absolute;top:-6px;left:0;}
+.navtoggle-bars:after{position:absolute;top:6px;left:0;}
+.mobilemenu{position:fixed;inset:0;display:none;z-index:9999;}
+.mobilemenu[aria-hidden="false"]{display:block;}
+.mobilemenu-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.74);backdrop-filter:blur(12px);}
+.mobilemenu-panel{position:absolute;top:12px;right:12px;width:min(350px,92vw);border:1px solid rgba(255,255,255,.12);border-radius:24px;background:radial-gradient(ellipse at 24% 5%,rgba(201,162,74,.16),transparent 55%),rgba(8,7,6,.96);overflow:hidden;box-shadow:0 50px 160px rgba(0,0,0,.8);}
+.mobilemenu-head{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid rgba(255,255,255,.08);}
+.mobilemenu-close{width:38px;height:38px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.22);color:#fff;font-size:24px;cursor:pointer;}
+.mobilemenu-links{display:flex;flex-direction:column;gap:8px;padding:12px;}
+.m-link{border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);border-radius:16px;padding:15px 14px;text-decoration:none;color:rgba(255,255,255,.85);font-weight:800;text-align:left;cursor:pointer;}
+.m-link.gold{background:var(--gold);color:#090706;border-color:var(--gold);}
+
+/* Hero */
+.rootd-hero{min-height:92vh;display:flex;align-items:center;padding:78px 56px 44px;position:relative;}
+.rootd-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 45%,rgba(201,162,74,.12),transparent 58%);pointer-events:none;}
+.hero-grid{width:100%;max-width:1220px;margin:0 auto;display:grid;grid-template-columns:1.03fr .97fr;gap:54px;align-items:center;position:relative;z-index:2;}
+.microstamp{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(64px,8.5vw,132px);line-height:.84;letter-spacing:-.04em;margin:0;color:var(--warm);}
+.hero-title .gold{display:block;color:var(--gold);font-style:italic;}
+.hero-anchor{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.78);margin:22px 0 16px;}
+.hero-sub{font-size:17px;line-height:1.75;color:var(--muted);max-width:620px;margin:0 0 26px;}
+.hero-sub strong{color:var(--cream);font-weight:700;}
+.hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px;}
+.btn{border:0;border-radius:999px;padding:14px 20px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font:800 12px/1 'DM Sans',sans-serif;letter-spacing:.15em;text-transform:uppercase;transition:.2s ease;}
+.btn-gold{background:var(--gold);color:#080706;box-shadow:0 22px 70px rgba(0,0,0,.5);}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--cream);border:1px solid rgba(255,255,255,.14);}
+.btn:hover{transform:translateY(-2px);}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;}
+.pill{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--line);background:rgba(0,0,0,.24);color:rgba(255,255,255,.72);border-radius:999px;padding:9px 12px;}
+
+/* Fun visual side */
+.hero-visual{position:relative;min-height:500px;display:flex;align-items:center;justify-content:center;}
+.orbit{position:absolute;width:560px;height:560px;border-radius:999px;border:1px solid rgba(201,162,74,.12);animation:spin 34s linear infinite;}
+.orbit:before,.orbit:after{content:"";position:absolute;width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 30px rgba(201,162,74,.55);}
+.orbit:before{top:70px;left:98px}.orbit:after{bottom:88px;right:106px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.system-card{position:relative;width:min(430px,100%);border:1px solid var(--line-strong);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.025));box-shadow:0 50px 160px rgba(0,0,0,.65);padding:24px;backdrop-filter:blur(16px);}
+.system-card .label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.deal-ticket{border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.26);border-radius:20px;padding:18px;margin-bottom:12px;}
+.ticket-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px;}
+.ticket-title{font-weight:900;color:#fff;font-size:18px;line-height:1.18;}
+.ticket-badge{font-family:'DM Mono',monospace;font-size:9px;color:#090706;background:var(--gold);border-radius:999px;padding:6px 9px;white-space:nowrap;text-transform:uppercase;letter-spacing:.1em;}
+.progress{height:10px;border-radius:99px;background:rgba(255,255,255,.09);overflow:hidden;border:1px solid rgba(255,255,255,.06);}
+.progress span{display:block;height:100%;width:72%;background:linear-gradient(90deg,var(--gold),var(--gold-2));border-radius:99px;}
+.ticket-meta{display:flex;justify-content:space-between;color:var(--muted-2);font-size:12px;margin-top:9px;}
+.float-note{position:absolute;border:1px solid rgba(255,255,255,.1);background:rgba(5,5,5,.72);backdrop-filter:blur(12px);border-radius:18px;padding:14px 16px;box-shadow:0 24px 80px rgba(0,0,0,.55);font-size:13px;color:var(--muted);}
+.float-note strong{color:var(--gold);display:block;font-size:18px;}
+.float-note.one{top:26px;left:-20px}.float-note.two{right:-26px;bottom:56px}
+
+/* Ticker */
+.ticker-wrap{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(0,0,0,.22);padding:13px 0;}
+.ticker-track{display:flex;gap:20px;white-space:nowrap;animation:ticker 32s linear infinite;}
+.ticker-item{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);}
+.ticker-dot{color:rgba(255,255,255,.25);}
+@keyframes ticker{to{transform:translateX(-50%);}}
+
+/* Shared sections */
+.section{padding:92px 56px;border-top:1px solid rgba(255,255,255,.055);}
+.inner{max-width:1180px;margin:0 auto;}
+.section-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.section-headline{font-family:'Playfair Display',serif;font-size:clamp(38px,5.6vw,76px);line-height:.98;letter-spacing:-.025em;margin:0 0 20px;color:var(--warm);}
+.section-headline em{color:var(--gold);font-style:italic;}
+.section-body{font-size:17px;line-height:1.8;color:var(--muted);max-width:700px;margin:0;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px;}
+.info-card{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.035);border-radius:22px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.28);}
+.info-card .num{font-family:'Playfair Display',serif;font-size:54px;line-height:.9;color:rgba(201,162,74,.22);font-weight:900;margin-bottom:12px;}
+.info-card h3{font-size:19px;margin:0 0 10px;color:#fff;}
+.info-card p{font-size:14px;line-height:1.68;color:var(--muted);margin:0;}
+
+/* Why */
+.why-section{background:rgba(0,0,0,.18);}
+.why-list{display:grid;gap:12px;}
+.why-item{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);border-radius:20px;padding:19px;}
+.why-item span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);}
+.why-item h3{font-size:17px;color:#fff;margin:8px 0 8px;}
+.why-item p{color:var(--muted);font-size:14px;line-height:1.65;margin:0;}
+
+/* Deals */
+.deals-section{background:linear-gradient(180deg,rgba(18,12,8,.64),rgba(5,5,5,.2));}
+.deal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px;}
+.deal-card{border:1px solid rgba(255,255,255,.1);border-left:3px solid var(--gold);border-radius:22px;padding:24px;background:rgba(255,255,255,.035);}
+.deal-card .tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.deal-card h3{font-size:20px;margin:0 0 10px;color:#fff;}
+.deal-card p{font-size:14px;line-height:1.72;color:var(--muted);margin:0;}
+.deal-card.wide{grid-column:1/-1;background:radial-gradient(600px 260px at 12% 0%,rgba(201,162,74,.12),transparent 60%),rgba(255,255,255,.035);}
+
+/* Loop */
+.loop-track{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:38px;}
+.loop-node{text-align:center;border:1px solid rgba(255,255,255,.1);background:rgba(0,0,0,.2);border-radius:24px;padding:24px 14px;position:relative;}
+.loop-node:after{content:"→";position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--gold);opacity:.55;}
+.loop-node:last-child:after{content:"";}
+.loop-dot{width:44px;height:44px;border-radius:50%;background:rgba(201,162,74,.12);border:1px solid var(--line-strong);margin:0 auto 14px;display:flex;align-items:center;justify-content:center;}
+.loop-dot:before{content:"";width:15px;height:15px;border-radius:50%;background:var(--gold);box-shadow:0 0 28px rgba(201,162,74,.42);}
+.loop-node h3{font-size:16px;color:#fff;margin:0 0 6px;}
+.loop-node p{font-size:12px;line-height:1.55;color:var(--muted-2);margin:0;}
+
+/* Membership */
+.tier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px;}
+.tier{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);border-radius:22px;padding:22px;text-align:center;}
+.tier.featured{border-color:var(--line-strong);background:rgba(201,162,74,.07);}
+.tier .icon{font-size:28px;margin-bottom:8px;display:block;}
+.tier h3{font-family:'Playfair Display',serif;font-size:25px;margin:0 0 8px;color:#fff;}
+.tier p{font-size:13px;line-height:1.6;color:var(--muted);margin:0;}
+.tier .badge{display:inline-block;margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);border-radius:999px;padding:6px 9px;}
+
+/* Business */
+.biz-section{background:rgba(18,12,8,.55);}
+.biz-list{display:grid;gap:0;border-top:1px solid var(--line);margin-top:8px;}
+.biz-item{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);}
+.biz-num{font-family:'DM Mono',monospace;color:var(--gold);font-size:12px;opacity:.75;}
+.biz-item h3{font-size:16px;color:#fff;margin:0 0 5px;}
+.biz-item p{font-size:13px;line-height:1.6;color:var(--muted);margin:0;}
+
+/* Newsletter + Waitlist */
+.newsletter-card{margin-top:32px;border:1px solid var(--line-strong);border-radius:28px;padding:28px;background:radial-gradient(650px 260px at 10% 0%,rgba(201,162,74,.14),transparent 58%),rgba(255,255,255,.035);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+.input,.select{width:100%;padding:14px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.055);color:#fff;outline:none;font-size:14px;}
+.select option{background:#100d0a;color:#fff;}
+.input:focus,.select:focus{border-color:var(--line-strong);box-shadow:0 0 0 4px rgba(201,162,74,.1);}
+.waitlist-final{text-align:center;padding:105px 56px;background:radial-gradient(800px 420px at 50% 10%,rgba(201,162,74,.12),transparent 68%);}
+.waitlist-final .section-body{margin:0 auto 26px;}
+.waitlist-form{max-width:720px;margin:0 auto;}
+.waitlist-note{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2);margin-top:14px;}
+
+/* Footer */
+.rootd-footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 56px 42px;display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:1220px;margin:0 auto;color:var(--muted-2);font-size:12px;}
+.rootd-footer a{color:var(--muted);text-decoration:none;margin-left:16px;}
+.rootd-footer a:hover{color:#fff;}
+
+/* Modal */
+.modal{position:fixed;inset:0;display:none;z-index:99999;}
+.modal[aria-hidden="false"]{display:block;}
+.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.74);backdrop-filter:blur(12px);}
+.modal-card{position:relative;width:min(650px,92vw);margin:6vh auto;border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:24px;background:radial-gradient(ellipse at 22% 0%,rgba(201,162,74,.16),transparent 58%),rgba(8,7,6,.96);box-shadow:0 48px 160px rgba(0,0,0,.82);}
+.modal-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.25);color:#fff;font-size:24px;cursor:pointer;}
+.modal-kicker{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);}
+.modal-title{font-family:'Playfair Display',serif;font-size:36px;line-height:1;margin:12px 0 10px;color:#fff;}
+.modal-sub{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:16px;}
+.modal-form{display:grid;gap:10px;}
+.lbl{font-size:12px;color:rgba(255,255,255,.72);font-weight:700;}
+.confirm,.error{margin-top:12px;border-radius:18px;padding:15px;font-size:14px;line-height:1.55;}
+.confirm{border:1px solid var(--line-strong);background:rgba(201,162,74,.09);color:var(--cream);}
+.error{border:1px solid rgba(255,100,100,.35);background:rgba(255,80,80,.08);color:#ffd3d3;}
+.hidden{display:none !important;}
+
+/* Animation */
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .75s ease,transform .75s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* Responsive */
+@media(max-width:1000px){
+  .rootd-topbar{padding:14px 18px}.pillnav{display:none}.navtoggle{display:flex}
+  .rootd-hero{padding:62px 18px 34px}.hero-grid{grid-template-columns:1fr;gap:28px}.hero-visual{min-height:410px}.float-note.two{right:0}.float-note.one{left:0}
+  .section{padding:72px 18px}.two-col,.deal-grid{grid-template-columns:1fr}.card-grid,.tier-grid,.loop-track{grid-template-columns:1fr}
+  .loop-node:after{display:none}.form-row{grid-template-columns:1fr}.waitlist-final{padding:82px 18px}.rootd-footer{padding:26px 18px 40px;flex-direction:column;align-items:flex-start}
+}
+@media(max-width:560px){
+  .hero-title{font-size:58px}.hero-sub{font-size:15px}.hero-visual{min-height:360px}.system-card{padding:18px}.float-note{position:relative;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;margin:12px auto 0;width:100%;}
+  .orbit{width:390px;height:390px}.section-headline{font-size:38px}.modal-title{font-size:30px}
+}
+</style>
+</head>
+<body>
+<section class="rootd-wrap" id="top">
+  <header class="rootd-topbar" role="banner">
+    <a class="brand" href="#top" aria-label="Rootd Black home">
+      <img class="brand-icon" src="https://rootd.black/wp-content/uploads/2026/03/LTFU-DROP-1.png" alt="Rootd icon">
+      <span class="brand-word">Rootd</span>
+    </a>
+    <nav class="pillnav" aria-label="Primary">
+      <a href="#why">Why</a>
+      <a href="#how">How It Works</a>
+      <a href="#deals">Group Deals</a>
+      <a href="#business">Businesses</a>
+      <a href="#newsletter">Newsletter</a>
+      <button class="nav-cta" type="button" data-open-waitlist>Join Early Access</button>
+    </nav>
+    <button class="navtoggle" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" data-nav-toggle><span class="navtoggle-bars" aria-hidden="true"></span></button>
+    <div class="mobilemenu" id="mobileMenu" aria-hidden="true">
+      <div class="mobilemenu-backdrop" data-nav-close></div>
+      <div class="mobilemenu-panel" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="mobilemenu-head">
+          <img class="brand-icon" src="https://rootd.black/wp-content/uploads/2026/03/LTFU-DROP-1.png" alt="Rootd icon">
+          <button class="mobilemenu-close" type="button" aria-label="Close menu" data-nav-close>×</button>
+        </div>
+        <nav class="mobilemenu-links" aria-label="Mobile">
+          <a class="m-link" href="#why" data-nav-close>Why Rootd</a>
+          <a class="m-link" href="#how" data-nav-close>How It Works</a>
+          <a class="m-link" href="#deals" data-nav-close>Group Deals</a>
+          <a class="m-link" href="#business" data-nav-close>Businesses</a>
+          <a class="m-link" href="#newsletter" data-nav-close>Newsletter</a>
+          <button class="m-link gold" type="button" data-open-waitlist-mobile>Join Early Access</button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="rootd-hero" role="main">
+    <div class="hero-grid">
+      <div class="hero-copy fade-in visible">
+        <div class="microstamp">Rootd Black • Platform Launch</div>
+        <h1 class="hero-title">LOVE THAT <span class="gold">FOR US.</span></h1>
+        <div class="hero-anchor">Discover. Save. Grow Together.</div>
+        <p class="hero-sub"><strong>Rootd</strong> helps consumers and businesses connect through verified discovery, group deals, and intentional commerce. Fun enough to use. Serious enough to build power.</p>
+        <div class="hero-actions">
+          <button class="btn btn-gold" type="button" data-open-waitlist>Join Early Access</button>
+          <a class="btn btn-ghost" href="#business">For Businesses</a>
+        </div>
+        <div class="chips">
+          <span class="pill">Early Access Open</span>
+          <span class="pill">Discovery + Group Deals</span>
+          <span class="pill">Built With Intention</span>
+        </div>
+      </div>
+      <div class="hero-visual fade-in visible" aria-label="Rootd system preview">
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="system-card">
+          <div class="label">Live Group Deal Preview</div>
+          <div class="deal-ticket">
+            <div class="ticket-top">
+              <div class="ticket-title">Sunday Dinner Deal</div>
+              <div class="ticket-badge">72% Filled</div>
+            </div>
+            <div class="progress"><span></span></div>
+            <div class="ticket-meta"><span>36 joined</span><span>14 left to unlock</span></div>
+          </div>
+          <div class="deal-ticket">
+            <div class="ticket-top">
+              <div class="ticket-title">Beauty Service Bundle</div>
+              <div class="ticket-badge">Trending</div>
+            </div>
+            <div class="progress"><span style="width:54%"></span></div>
+            <div class="ticket-meta"><span>27 joined</span><span>Ends soon</span></div>
+          </div>
+        </div>
+        <div class="float-note one"><strong>Discover</strong>Verified businesses people can actually find.</div>
+        <div class="float-note two"><strong>Unlock</strong>Deals activate when the community moves.</div>
+      </div>
+    </div>
+  </main>
+
+  <div class="ticker-wrap" aria-hidden="true"><div class="ticker-track">
+    <span class="ticker-item">Verified Discovery</span><span class="ticker-dot">◆</span><span class="ticker-item">Group Deals</span><span class="ticker-dot">◆</span><span class="ticker-item">Intentional Commerce</span><span class="ticker-dot">◆</span><span class="ticker-item">Business Growth</span><span class="ticker-dot">◆</span><span class="ticker-item">Community Buying Power</span><span class="ticker-dot">◆</span><span class="ticker-item">LOVE THAT FOR US.</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Verified Discovery</span><span class="ticker-dot">◆</span><span class="ticker-item">Group Deals</span><span class="ticker-dot">◆</span><span class="ticker-item">Intentional Commerce</span><span class="ticker-dot">◆</span><span class="ticker-item">Business Growth</span><span class="ticker-dot">◆</span><span class="ticker-item">Community Buying Power</span><span class="ticker-dot">◆</span><span class="ticker-item">LOVE THAT FOR US.</span><span class="ticker-dot">◆</span>
+  </div></div>
+
+  <section class="section why-section" id="why">
+    <div class="inner two-col">
+      <div class="fade-in">
+        <div class="section-tag">Why Rootd</div>
+        <h2 class="section-headline">Ownership was never the problem. <em>Access was.</em></h2>
+        <p class="section-body">People want to support businesses intentionally. Businesses need visibility, customers, and growth. Rootd bridges that gap with a system built for discovery, deals, and circulation.</p>
+      </div>
+      <div class="why-list fade-in">
+        <div class="why-item"><span>For Consumers</span><h3>Find better businesses without the scavenger hunt.</h3><p>Browse, save, and support businesses with confidence — then unlock group deals when the community joins in.</p></div>
+        <div class="why-item"><span>For Businesses</span><h3>More than a listing. A growth lane.</h3><p>Get discovered, run offers, build repeat customers, and prepare for future collective buying opportunities.</p></div>
+        <div class="why-item"><span>The Bigger Point</span><h3>Spending should create value.</h3><p>Rootd turns everyday commerce into participation — where money moves with purpose, not just out of habit.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="inner">
+      <div class="section-tag fade-in">How It Works</div>
+      <h2 class="section-headline fade-in">Three steps. <em>One system.</em></h2>
+      <div class="card-grid">
+        <div class="info-card fade-in"><div class="num">01</div><h3>Discover</h3><p>Find businesses, services, and offers built for the community — organized clearly and ready to explore.</p></div>
+        <div class="info-card fade-in"><div class="num">02</div><h3>Join Deals</h3><p>Group deals unlock when enough members join. Better pricing for consumers. More volume for businesses.</p></div>
+        <div class="info-card fade-in"><div class="num">03</div><h3>Grow Together</h3><p>Support businesses while saving money and helping the ecosystem become stronger with every action.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section deals-section" id="deals">
+    <div class="inner">
+      <div class="section-tag fade-in">Group Deals</div>
+      <h2 class="section-headline fade-in">Community buying power, <em>activated.</em></h2>
+      <p class="section-body fade-in">This keeps Rootd fun and useful: businesses create offers, members join together, and deals unlock when participation goals are reached.</p>
+      <div class="deal-grid">
+        <div class="deal-card fade-in"><div class="tag">Consumers</div><h3>Save more when people move together.</h3><p>Join deals you actually want. Track buyer progress, countdowns, and unlock moments that make spending feel social and intentional.</p></div>
+        <div class="deal-card fade-in"><div class="tag">Businesses</div><h3>Promotions with guardrails.</h3><p>Businesses set the minimum buyer goal, quantity, deadline, and offer details so deals only activate when the numbers make sense.</p></div>
+        <div class="deal-card wide fade-in"><div class="tag">Rootd Difference</div><h3>Not just coupons. A commerce loop.</h3><p>Discovery brings people in. Group deals create action. Membership keeps them connected. Business growth keeps the ecosystem alive.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="inner">
+      <div class="section-tag fade-in">The Rootd Loop</div>
+      <h2 class="section-headline fade-in"><em>Intentional</em> commerce is a cycle.</h2>
+      <div class="loop-track fade-in">
+        <div class="loop-node"><div class="loop-dot"></div><h3>Discover</h3><p>Find businesses and offers.</p></div>
+        <div class="loop-node"><div class="loop-dot"></div><h3>Spend</h3><p>Support with purpose.</p></div>
+        <div class="loop-node"><div class="loop-dot"></div><h3>Earn</h3><p>Unlock access and benefits.</p></div>
+        <div class="loop-node"><div class="loop-dot"></div><h3>Reinvest</h3><p>Keep value moving.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="inner">
+      <div class="section-tag fade-in">Membership Preview</div>
+      <h2 class="section-headline fade-in">Start simple. <em>Grow into the system.</em></h2>
+      <p class="section-body fade-in">The first version stays clear. Membership grows over time without overwhelming people on day one.</p>
+      <div class="tier-grid">
+        <div class="tier fade-in"><span class="icon">🌱</span><h3>Seed</h3><p>Free discovery access and early updates.</p><span class="badge">Entry</span></div>
+        <div class="tier fade-in"><span class="icon">🌿</span><h3>Sprout</h3><p>Consumer perks, deals, and future rewards.</p><span class="badge">Consumer</span></div>
+        <div class="tier featured fade-in"><span class="icon">🌳</span><h3>Branch</h3><p>Business visibility, deal tools, and partner access.</p><span class="badge">Business</span></div>
+        <div class="tier fade-in"><span class="icon">🏛️</span><h3>Pillar</h3><p>Premium ecosystem access for serious builders.</p><span class="badge">Future</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section biz-section" id="business">
+    <div class="inner two-col">
+      <div class="fade-in">
+        <div class="section-tag">For Businesses</div>
+        <h2 class="section-headline">More than a listing. <em>A growth system.</em></h2>
+        <p class="section-body">Rootd helps businesses get discovered, test demand, run community-powered deals, and prepare for the larger commerce ecosystem being built with partners.</p>
+      </div>
+      <div class="biz-list fade-in">
+        <div class="biz-item"><div class="biz-num">01</div><div><h3>Get Discovered</h3><p>Show up where intentional buyers are already looking.</p></div></div>
+        <div class="biz-item"><div class="biz-num">02</div><div><h3>Run Group Deals</h3><p>Launch offers that activate when customer demand reaches your threshold.</p></div></div>
+        <div class="biz-item"><div class="biz-num">03</div><div><h3>Build Repeat Customers</h3><p>Turn one-time buyers into connected members through the Rootd experience.</p></div></div>
+        <div class="biz-item"><div class="biz-num">04</div><div><h3>Prepare For Collective Buying</h3><p>Early business partners help shape future sourcing, pools, and partner benefits.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="newsletter">
+    <div class="inner">
+      <div class="section-tag fade-in">Rootd Insider</div>
+      <h2 class="section-headline fade-in">Stay close to what’s being built.</h2>
+      <p class="section-body fade-in">Monthly updates featuring new businesses, new deals, community stories, product updates, and marketplace insights.</p>
+      <div class="newsletter-card fade-in">
+        <form class="waitlist-form" data-rootd-form="newsletter">
+          <div class="form-row">
+            <input class="input" type="text" name="name" placeholder="Your name" required>
+            <input class="input" type="email" name="email" placeholder="you@email.com" required>
+          </div>
+          <div class="form-row">
+            <select class="select" name="role" required>
+              <option value="">I’m joining as...</option>
+              <option value="Consumer">Consumer</option>
+              <option value="Business Owner">Business Owner</option>
+              <option value="Branch Partner">Branch Partner</option>
+              <option value="Supporter / Ally">Supporter / Ally</option>
+            </select>
+            <button class="btn btn-gold" type="submit">Join Rootd Insider</button>
+          </div>
+          <div class="waitlist-note" data-form-message>Newsletter + waitlist segmented by consumers, businesses, and branch partners.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist-final" id="waitlist">
+    <div class="inner fade-in">
+      <div class="section-tag">Early Access</div>
+      <h2 class="section-headline">Be part of <em>what’s next.</em></h2>
+      <p class="section-body">The first Rootd members help shape the rollout — discovery, group deals, business onboarding, and the future commerce system.</p>
+      <button class="btn btn-gold" type="button" data-open-waitlist>Join Early Access</button>
+      <div class="waitlist-note">No merch push. No clutter. Just the build.</div>
+    </div>
+  </section>
+
+  <footer class="rootd-footer">
+    <div>© 2026 RootdBlack.com • Because where money goes matters.</div>
+    <div><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></div>
+  </footer>
+
+  <div class="modal" id="waitlistModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-waitlist></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" aria-label="Close" data-close-waitlist>×</button>
+      <div class="modal-kicker">Early Access</div>
+      <h3 class="modal-title" id="modalTitle">Join Rootd</h3>
+      <div class="modal-sub">Tell us where you fit so we can place you in the right early access lane.</div>
+      <form class="modal-form" id="waitlistForm">
+        <label class="lbl">Name</label><input class="input" type="text" name="name" placeholder="Your name" required>
+        <label class="lbl">Email</label><input class="input" type="email" name="email" placeholder="you@email.com" required>
+        <label class="lbl">I’m joining as</label>
+        <select class="select" name="role" required>
+          <option value="">Select one</option>
+          <option value="Consumer">Consumer</option>
+          <option value="Business Owner">Business Owner</option>
+          <option value="Branch Partner">Branch Partner</option>
+          <option value="Supporter / Ally">Supporter / Ally</option>
+        </select>
+        <label class="lbl">Interest</label>
+        <select class="select" name="interest" required>
+          <option value="">What are you most interested in?</option>
+          <option value="Discovering businesses">Discovering businesses</option>
+          <option value="Group deals">Group deals</option>
+          <option value="Listing my business">Listing my business</option>
+          <option value="Branch partnership">Branch partnership</option>
+          <option value="Newsletter only">Newsletter only</option>
+        </select>
+        <button class="btn btn-gold" id="submitBtn" type="submit">Join Early Access</button>
+        <div class="confirm hidden" id="confirmBox">You’re in. Watch your inbox — Rootd access rolls out in waves.</div>
+        <div class="error hidden" id="errorBox">Something failed. Try again in a moment.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  /* Replace with your Google Apps Script endpoint if needed. Existing endpoint kept from current Rootd build. */
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnaqsTKGuVS1agZ7nw7e8hyZKAsjpKh4tJdbD-SoEkRmQ74VcYX5Ou5THYaudUA_4DZA/exec";
+
+  const modal = document.getElementById("waitlistModal");
+  const openers = document.querySelectorAll("[data-open-waitlist]");
+  const closers = document.querySelectorAll("[data-close-waitlist]");
+  const confirmBox = document.getElementById("confirmBox");
+  const errorBox = document.getElementById("errorBox");
+  const submitBtn = document.getElementById("submitBtn");
+  const form = document.getElementById("waitlistForm");
+
+  function openModal(){
+    modal?.setAttribute("aria-hidden","false");
+    document.body.style.overflow = "hidden";
+    confirmBox?.classList.add("hidden");
+    errorBox?.classList.add("hidden");
+  }
+  function closeModal(){
+    modal?.setAttribute("aria-hidden","true");
+    document.body.style.overflow = "";
+  }
+  openers.forEach(btn => btn.addEventListener("click", openModal));
+  closers.forEach(btn => btn.addEventListener("click", closeModal));
+  document.addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
+
+  const menu = document.getElementById("mobileMenu");
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const navClosers = document.querySelectorAll("[data-nav-close]");
+  const mobileOpeners = document.querySelectorAll("[data-open-waitlist-mobile]");
+  function openMenu(){ menu?.setAttribute("aria-hidden","false"); toggle?.setAttribute("aria-expanded","true"); document.body.style.overflow="hidden"; }
+  function closeMenu(){ menu?.setAttribute("aria-hidden","true"); toggle?.setAttribute("aria-expanded","false"); document.body.style.overflow=""; }
+  toggle?.addEventListener("click", () => menu?.getAttribute("aria-hidden") === "false" ? closeMenu() : openMenu());
+  navClosers.forEach(el => el.addEventListener("click", closeMenu));
+  mobileOpeners.forEach(el => el.addEventListener("click", () => { closeMenu(); openModal(); }));
+
+  async function submitToSheet(formEl, buttonEl, messageEl){
+    const fd = new FormData(formEl);
+    const email = (fd.get("email") || "").toString().trim();
+    if(!email.includes("@")){
+      if(messageEl){ messageEl.textContent = "Enter a valid email to join."; messageEl.style.color = "#ffd3d3"; }
+      return;
+    }
+    if(buttonEl){ buttonEl.disabled = true; buttonEl.textContent = "Adding..."; }
+    try{
+      await fetch(SCRIPT_URL, { method:"POST", mode:"no-cors", body:new URLSearchParams(fd).toString(), headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"} });
+      formEl.reset();
+      if(messageEl){ messageEl.textContent = "You're in. Watch your inbox — access rolls out in waves."; messageEl.style.color = "#c9a24a"; }
+      confirmBox?.classList.remove("hidden");
+      if(buttonEl){ buttonEl.textContent = "Added ✓"; setTimeout(()=>{buttonEl.disabled=false; buttonEl.textContent = buttonEl.id === "submitBtn" ? "Join Early Access" : "Join Rootd Insider";}, 1200); }
+    } catch(err){
+      errorBox?.classList.remove("hidden");
+      if(messageEl){ messageEl.textContent = "Something failed. Try again in a moment."; messageEl.style.color = "#ffd3d3"; }
+      if(buttonEl){ buttonEl.disabled=false; buttonEl.textContent = buttonEl.id === "submitBtn" ? "Join Early Access" : "Join Rootd Insider"; }
+    }
+  }
+
+  form?.addEventListener("submit", e => { e.preventDefault(); submitToSheet(form, submitBtn, null); });
+  document.querySelectorAll("[data-rootd-form='newsletter']").forEach(newsForm => {
+    newsForm.addEventListener("submit", e => {
+      e.preventDefault();
+      submitToSheet(newsForm, newsForm.querySelector("button"), newsForm.querySelector("[data-form-message]"));
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add("visible"); }), {threshold:.12});
+  document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+})();
+</script>
+</body>
+</html>
